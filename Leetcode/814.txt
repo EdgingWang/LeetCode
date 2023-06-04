@@ -1,0 +1,13 @@
+
+TreeNode* pruneTree(TreeNode* root) {
+    if (root->left)
+        root->left = pruneTree(root->left);
+    if (root->right)
+        root->right = pruneTree(root->right);
+    if (!root->left && !root->right) {
+        if (root->val)
+            return root;
+        return NULL;
+    }
+    return root;
+}

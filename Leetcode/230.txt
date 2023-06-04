@@ -1,0 +1,17 @@
+
+void traversalTree(TreeNode* root, vector<int>& num) {
+    if (root->left) {
+        traversalTree(root->left,num);
+    }
+    num.push_back(root->val);
+    if (root->right) {
+        traversalTree(root->right, num);
+    }
+    return;
+}
+
+int kthSmallest(TreeNode* root, int k) {
+    vector<int> num;
+    traversalTree(root, num);
+    return num[k - 1];
+}

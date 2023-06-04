@@ -1,0 +1,42 @@
+bool isPalindrome(char* head,char *tail)
+{
+    while (head < tail) {
+        if (*head == *tail) {
+            head++;
+            tail--;
+        }
+        else {
+            return false;
+        }
+    }
+    return true;
+}
+
+string formString(char* head, char* tail) {
+    string s = "";
+    s += *head;
+    while (head++ != tail) {
+        s += *head;
+    }
+    return s;
+}
+
+string longestPalindrome(string s) {
+    char* head, * tail;
+    head = &s[0];
+    tail = &s[s.length()-1];
+    string curS="", maxS = "";
+    for (head = &s[0]; head <= &s[s.length() - 1]; head++) {
+        for (tail = &s[s.length() - 1]; tail >= head; tail--) {
+            if (isPalindrome(head, tail)) {
+                curS = formString(head, tail);
+                if (curS.length() > maxS.length()) {
+                    maxS = curS;
+                    if (tail == &s[s.length() - 1])
+                        return maxS;
+                }
+            }
+        }
+    }
+    return maxS;
+}

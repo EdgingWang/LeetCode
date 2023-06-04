@@ -1,0 +1,14 @@
+
+    int max = 0, cnt = 0;
+    for (int i = 0; i < sentences.size(); i++) {
+        cnt = 0;
+        for (int j = 0; j < sentences[i].length(); j++) {
+            if (sentences[i][j] == ' ') {
+                cnt++;
+            }
+        }
+        if (cnt + 1 > max) {
+            max = cnt + 1;
+        }
+    }
+    return max;

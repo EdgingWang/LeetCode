@@ -1,0 +1,29 @@
+
+int numSteps(string s) {
+    int steps = 0;
+    while (s != "1") {
+        if (*(s.end() - 1) == '0') {
+            s.pop_back();
+        }
+        else {
+            int carry = 0;
+            for (int i = s.length()-1; i >=0; i--) {
+                if (s[i] == '1') {
+                    s[i] = '0';
+                    carry = 1;
+                }
+                else {
+                    s[i] = '1';
+                    carry = 0;
+                    break;
+                }
+            }
+            if (carry == 1) {
+                s.insert(0, "1");
+            }
+        }
+
+        steps++;
+    }
+    return steps;
+}
