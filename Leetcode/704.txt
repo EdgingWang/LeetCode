@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+    int l=0, r = nums.size() - 1;
+    while(l<=r) {
+        if (nums[(l+r)/2] == target) {
+            return (l + r) / 2;
+        }
+        else if (nums[(l + r) / 2] < target) {
+            l = (l + r) / 2;
+        }
+        else{
+            r= (l + r) / 2;
+        }
+        if (l >= r - 1) {
+            if (nums[r] == target)
+                return r;
+            if (nums[l] == target)
+                return l;
+            break;
+        }
+    }
+    return -1;
+        
+    }
+};

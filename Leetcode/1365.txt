@@ -1,0 +1,16 @@
+class Solution {
+public:
+vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+    vector<int> ans;
+    for (int num : nums)
+    {
+        int sum = 0;
+        for (int n : nums) {
+            if (n < num)
+                sum++;
+        }
+        ans.push_back(sum);
+    }
+    return ans;
+}
+};

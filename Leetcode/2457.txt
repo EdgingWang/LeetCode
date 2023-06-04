@@ -1,0 +1,44 @@
+class Solution {
+public:
+int digits[20] = { 0 };
+int calculateSum() {
+    int sum = 0;
+    for (int i = 19; i >= 0; i--) {
+        sum += digits[i];
+    }
+    return sum;
+}
+
+void getDigits(long long n) {
+    for (int i = 0; n > 0;i++) {
+        digits[i] = n % 10;
+        n /= 10;
+    }
+ }
+
+long long makeIntegerBeautiful(long long n, int target) {
+    getDigits(n);
+    int sSum = calculateSum();
+    long long beautyNum = 0;
+    for (int i = 0, differ =  sSum - target; true; i++) {
+        if (differ <= 0) {
+            break;
+        }
+        else if (digits[i] - 1 >= differ) {
+            digits[i+1]++;
+            digits[i] = 0;
+            break;
+        }
+        else {
+            digits[i + 1]++;
+            digits[i] = 0;
+        }
+        differ = calculateSum() - target;
+    }
+    for (int i = 19; i>=0; i--) {
+        beautyNum *= 10;
+        beautyNum += digits[i];
+    }
+    return beautyNum - n;
+}
+};
